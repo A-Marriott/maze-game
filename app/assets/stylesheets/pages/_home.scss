@@ -6,8 +6,19 @@
   // border: 5px solid black;
 }
 
-.cs {
+.square {
+  height: 40px;
+}
+
+.NW {
   border-top: 5px solid black;
   border-left: 5px solid black;
-  height: 40px;
+}
+
+.N {
+  border-top: 5px solid black;
+}
+
+.W {
+  border-left: 5px solid black;
 }

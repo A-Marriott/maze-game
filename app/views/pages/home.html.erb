@@ -1,5 +1,7 @@
 <div class="wrapper">
- <% 9.times do |thing| %>
-  <div class="cs"></div>
- <% end %>
+  <% @grid.each do |grid_row| %>
+    <% grid_row.each do |square| %>
+      <div class="square <%= square[:walls] %>"></div>
+    <% end-%>
+  <% end %>
 </div>
