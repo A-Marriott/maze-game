@@ -23,9 +23,11 @@ import "bootstrap";
 
 // Internal imports, e.g:
 import dotMovement from './init_dot_movement.js';
-import mazeTargetAndCompletion from './init_maze_target_and_completion.js';
+import mazeEndPoint from './init_maze_end_point.js';
+import mazeCompletionCheck from './init_maze_completion_check.js'
 
 document.addEventListener('turbolinks:load', () => {
   dotMovement();
-  mazeTargetAndCompletion();
+  mazeEndPoint();
+  mazeCompletionCheck();
 });
