@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
   def home
-    # @grid = Array.new(10) { Array.new(10) { { visited?: false, walls: 'NW' } } }
-    # implement logic to find deepest level of recursion and insert end of maze there
     @grid = []
+    @current_recursion = 0
+    @deepest_recursion = { count: 0, deepest_x_position: 0, deepest_y_position: 0 }
     (0..9).each do |index_y|
       x_ary = []
       (0..9).each do |index_x|
@@ -10,14 +10,16 @@ class PagesController < ApplicationController
       end
       @grid << x_ary
     end
-    # raise
     @grid[0][0][:visited?] = true
     create_maze(0, 0, @grid)
   end
 
   def create_maze(y_position, x_position, grid)
     directions = ['N', 'S', 'E', 'W'].shuffle
-
+    @current_recursion += 1
+    if @deepest_recursion[:count] < @current_recursion
+      @deepest_recursion = { count: @current_recursion, deepest_x_position: x_position, deepest_y_position: y_position }
+    end
     directions.each do |direction|
       case direction
       when 'N'
@@ -50,6 +52,7 @@ class PagesController < ApplicationController
         end
       end
     end
+    @current_recursion -= 1
   end
 end
 
