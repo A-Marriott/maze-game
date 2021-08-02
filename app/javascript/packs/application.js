@@ -25,11 +25,14 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
-  document.querySelector('.square').firstElementChild.id = 'player-btn';
-  const playerBtn = document.getElementById('player-btn');
+  document.querySelector('.square').firstElementChild.className = 'player-btn';
+  let x_position = 0;
+  let y_position = 0;
   document.addEventListener('keydown', event => {
-    if (event.key === 'ArrowDown') {
-      console.log('hey')
+    if (event.key === 'ArrowDown' && document.getElementsByClassName(`x-${x_position} y-${y_position + 1}`)[0]) {
+      document.querySelector('.player-btn').classList.remove('player-btn')
+      y_position += 1
+      document.getElementsByClassName(`x-${x_position} y-${y_position}`)[0].firstElementChild.className = 'player-btn';
     }
   })
 });
