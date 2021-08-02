@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
     # @grid = Array.new(10) { Array.new(10) { { visited?: false, walls: 'NW' } } }
+    # implement logic to find deepest level of recursion and insert end of maze there
     @grid = []
     (0..9).each do |index_y|
       x_ary = []

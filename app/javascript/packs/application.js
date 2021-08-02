@@ -25,13 +25,26 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
+  // maybe don't need x and y for up down
   document.querySelector('.square').firstElementChild.className = 'player-btn';
   let x_position = 0;
   let y_position = 0;
   document.addEventListener('keydown', event => {
-    if (event.key === 'ArrowDown' && document.getElementsByClassName(`x-${x_position} y-${y_position + 1}`)[0]) {
+    if (event.key === 'ArrowDown' && document.getElementsByClassName(`y-${y_position + 1}`)[0]) {
       document.querySelector('.player-btn').classList.remove('player-btn')
       y_position += 1
+      document.getElementsByClassName(`x-${x_position} y-${y_position}`)[0].firstElementChild.className = 'player-btn';
+    } else if (event.key === 'ArrowUp' && document.getElementsByClassName(`y-${y_position - 1}`)[0]) {
+      document.querySelector('.player-btn').classList.remove('player-btn')
+      y_position -= 1
+      document.getElementsByClassName(`x-${x_position} y-${y_position}`)[0].firstElementChild.className = 'player-btn';
+    } else if (event.key === 'ArrowLeft' && document.getElementsByClassName(`x-${x_position - 1}`)[0]) {
+      document.querySelector('.player-btn').classList.remove('player-btn')
+      x_position -= 1
+      document.getElementsByClassName(`x-${x_position} y-${y_position}`)[0].firstElementChild.className = 'player-btn';
+    } else if (event.key === 'ArrowRight' && document.getElementsByClassName(`x-${x_position + 1}`)[0]) {
+      document.querySelector('.player-btn').classList.remove('player-btn')
+      x_position += 1
       document.getElementsByClassName(`x-${x_position} y-${y_position}`)[0].firstElementChild.className = 'player-btn';
     }
   })
