@@ -24,10 +24,12 @@ import "bootstrap";
 // Internal imports, e.g:
 import playerMovement from './init_player_movement.js';
 import mazeEndPoint from './init_maze_end_point.js';
-import mazeCompletionCheck from './init_maze_completion_check.js'
+import mazeCompletionCheck from './init_maze_completion_check.js';
+import powerUp from './init_powerup.js';
 
 document.addEventListener('turbolinks:load', () => {
   playerMovement();
   mazeEndPoint();
   mazeCompletionCheck();
+  powerUp();
 });

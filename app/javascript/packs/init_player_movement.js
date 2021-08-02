@@ -7,6 +7,7 @@ const playerMovement = () => {
   let timerStarted = false;
   const xMovement = {'ArrowLeft': -1, 'ArrowRight': 1};
   const yMovement = {'ArrowUp': -1, 'ArrowDown': 1};
+  let powerUpCounter = 0
 
   const movePlayer = (keyPress) => {
     document.querySelector('.player').classList.remove('player')
@@ -15,7 +16,13 @@ const playerMovement = () => {
     } else {
       yPosition += yMovement[keyPress]
     }
-    document.getElementsByClassName(`x-${xPosition} y-${yPosition}`)[0].firstElementChild.classList.add('player');
+    const newLocation = document.getElementsByClassName(`x-${xPosition} y-${yPosition}`)[0].firstElementChild
+
+    newLocation.classList.add('player');
+    if (newLocation.classList.value.includes('powerup')) {
+      newLocation.classList.remove('powerup');
+      powerUpCounter = 2;
+    }
   }
 
   document.addEventListener('keydown', event => {
@@ -24,10 +31,20 @@ const playerMovement = () => {
       timerStarted = true;
     }
 
-    if (event.key === 'ArrowDown' && document.getElementsByClassName(`y-${yPosition + 1}`)[0] && !document.getElementsByClassName(`y-${yPosition + 1} x-${xPosition}`)[0].classList.value.includes('N')) {
-      movePlayer(event.key)
-    } else if (event.key === 'ArrowUp' && document.getElementsByClassName(`y-${yPosition - 1}`)[0] && !document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0].classList.value.includes('N')) {
-      movePlayer(event.key)
+    if (event.key === 'ArrowDown' && document.getElementsByClassName(`y-${yPosition + 1}`)[0]) {
+      if (!document.getElementsByClassName(`y-${yPosition + 1} x-${xPosition}`)[0].classList.value.includes('N')) {
+        movePlayer(event.key)
+      } else if (powerUpCounter > 0) {
+        movePlayer(event.key)
+        powerUpCounter -= 1
+      }
+    } else if (event.key === 'ArrowUp' && document.getElementsByClassName(`y-${yPosition - 1}`)[0]) {
+      if (!document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0].classList.value.includes('N')) {
+        movePlayer(event.key)
+      } else if (powerUpCounter > 0) {
+        movePlayer(event.key)
+        powerUpCounter -= 1
+      }
     } else if (event.key === 'ArrowLeft' && document.getElementsByClassName(`x-${xPosition - 1}`)[0] && !document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0].classList.value.includes('W')) {
       movePlayer(event.key)
     } else if (event.key === 'ArrowRight' && document.getElementsByClassName(`x-${xPosition + 1}`)[0] && !document.getElementsByClassName(`y-${yPosition} x-${xPosition + 1}`)[0].classList.value.includes('W')) {
