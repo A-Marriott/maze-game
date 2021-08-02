@@ -1,7 +1,9 @@
 <div class="wrapper">
   <% @grid.each do |grid_row| %>
     <% grid_row.each do |square| %>
-      <div class="square <%= square[:walls] %>"></div>
+      <div class="square <%= square[:walls] %>">
+        <div></div>
+      </div>
     <% end-%>
   <% end %>
 </div>

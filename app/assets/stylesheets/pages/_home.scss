@@ -9,6 +9,9 @@
 
 .square {
   height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .NW {
@@ -22,4 +25,11 @@
 
 .W {
   border-left: 5px solid black;
+}
+
+#player-btn {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: black;
 }

@@ -1,6 +1,15 @@
 class PagesController < ApplicationController
   def home
-    @grid = Array.new(10) { Array.new(10) { { visited?: false, walls: 'NW' } } }
+    # @grid = Array.new(10) { Array.new(10) { { visited?: false, walls: 'NW' } } }
+    @grid = []
+    (0..9).each do |index_y|
+      x_ary = []
+      (0..9).each do |index_x|
+        x_ary << { x: index_x, y: index_y, visited?: false, walls: 'NW' }
+      end
+      @grid << x_ary
+    end
+    # raise
     @grid[0][0][:visited?] = true
     create_maze(0, 0, @grid)
   end

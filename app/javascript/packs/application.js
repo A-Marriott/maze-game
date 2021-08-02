@@ -25,6 +25,11 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  document.querySelector('.square').firstElementChild.id = 'player-btn';
+  const playerBtn = document.getElementById('player-btn');
+  document.addEventListener('keydown', event => {
+    if (event.key === 'ArrowDown') {
+      console.log('hey')
+    }
+  })
 });
