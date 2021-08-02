@@ -7,5 +7,9 @@ class PagesController < ApplicationController
 
   def create_maze(x_position, y_position, grid)
     directions = ['N', 'S', 'E', 'W'].shuffle
+
+    directions.each do |direction|
+
+    end
   end
 end
