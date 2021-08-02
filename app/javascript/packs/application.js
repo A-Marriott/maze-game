@@ -22,12 +22,12 @@ ActiveStorage.start()
 import "bootstrap";
 
 // Internal imports, e.g:
-import dotMovement from './init_dot_movement.js';
+import playerMovement from './init_player_movement.js';
 import mazeEndPoint from './init_maze_end_point.js';
 import mazeCompletionCheck from './init_maze_completion_check.js'
 
 document.addEventListener('turbolinks:load', () => {
-  dotMovement();
+  playerMovement();
   mazeEndPoint();
   mazeCompletionCheck();
 });

@@ -1,7 +1,8 @@
 const mazeCompletionCheck = () => {
   document.addEventListener('keydown', () => {
     if (document.getElementsByClassName('player-btn target-btn')[0]) {
-      console.log('hey')
+      alert(`You won! It took you ${document.getElementById('second-count').innerHTML} to complete`);
+      location.reload();
     }
   })
 }

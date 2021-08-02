@@ -1,8 +1,15 @@
-const dotMovement = () => {
+import timer from './init_timer.js'
+
+const playerMovement = () => {
   document.querySelector('.square').firstElementChild.className = 'player-btn';
   let x_position = 0;
   let y_position = 0;
+  let timerStarted = false;
   document.addEventListener('keydown', event => {
+    if (timerStarted === false) {
+      timer();
+      timerStarted = true;
+    }
     if (event.key === 'ArrowDown' && document.getElementsByClassName(`y-${y_position + 1}`)[0] && !document.getElementsByClassName(`y-${y_position + 1} x-${x_position}`)[0].classList.value.includes('N')) {
       document.querySelector('.player-btn').classList.remove('player-btn')
       y_position += 1
@@ -23,4 +30,4 @@ const dotMovement = () => {
   })
 }
 
-export default dotMovement;
+export default playerMovement;
