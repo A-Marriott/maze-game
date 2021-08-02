@@ -3,7 +3,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 10px;
-  // border: 5px solid black;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
 }
 
 .square {
