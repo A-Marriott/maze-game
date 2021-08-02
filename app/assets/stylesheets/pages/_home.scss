@@ -8,16 +8,27 @@ h3 {
   text-align: center;
 }
 
-.wrapper {
+.grid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
   margin: 10px;
   border-bottom: 5px solid black;
   border-right: 5px solid black;
 }
 
+.grid-size-10 {
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.grid-size-15 {
+  grid-template-columns: repeat(15, 1fr);
+}
+
+.grid-size-20 {
+  grid-template-columns: repeat(20, 1fr);
+}
+
 .square {
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;

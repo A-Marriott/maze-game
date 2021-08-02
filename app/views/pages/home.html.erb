@@ -1,7 +1,11 @@
 <h1>Time elapsed</h1>
 <h3 id="second-count">0 seconds</h3>
 
-<div class="wrapper">
+<a href="?q=10">10x10</a>
+<a href="?q=15">15x15</a>
+<a href="?q=20">20x20</a>
+
+<div class="grid <%= @css_grid %>">
   <% @grid.each do |grid_row| %>
     <% grid_row.each do |square| %>
       <div class="square <%= square[:walls] %> x-<%= square[:x] %> y-<%= square[:y] %>">
