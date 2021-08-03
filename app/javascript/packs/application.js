@@ -29,9 +29,9 @@ import powerUp from './init_powerup.js';
 import preventKeyboardScroll from './prevent_keyboard_scroll.js';
 
 document.addEventListener('turbolinks:load', () => {
-  playerMovement();
   mazeEndPoint();
   mazeCompletionCheck();
   powerUp();
+  playerMovement();
   preventKeyboardScroll();
 });

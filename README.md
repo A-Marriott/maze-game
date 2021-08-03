@@ -1,1 +1,2 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Play the maze over at https://lex-maze-game.herokuapp.com/
+n.b. A rare bug is caused by rails double loading the player movement javascript file, causing the player to skip around. If this happens simply refresh the page.
