@@ -31,7 +31,7 @@ const playerMovement = () => {
 
     xPosition += xMovement[event.key]
     yPosition += yMovement[event.key]
-    if (document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0] && !document.getElementsByClassName(`y-${yPosition + xAllowedMovementAdjustment[event.key]} x-${xPosition + yAllowedMovementCheckerAdjustment[event.key]}`)[0].classList.value.includes(directionToWallTracker[event.key])) {
+    if (document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0] && !document.getElementsByClassName(`y-${yPosition + xAllowedMovementCheckerAdjustment[event.key]} x-${xPosition + yAllowedMovementCheckerAdjustment[event.key]}`)[0].classList.value.includes(directionToWallTracker[event.key])) {
       movePlayer()
     } else if (document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0] && powerUpCounter > 0) {
       movePlayer()
