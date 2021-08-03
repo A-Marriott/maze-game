@@ -36,7 +36,7 @@ class PagesController < ApplicationController
   end
 
   def init_grid_direction_mapper
-    @x_movement = { 'E' => 1, 'W' => -1, 'N' =>  0, 'S' => 0 }
+    @x_movement = { 'E' => 1, 'W' => -1, 'N' => 0, 'S' => 0 }
     @y_movement = { 'E' => 0, 'W' => 0, 'N' => -1, 'S' => 1 }
   end
 

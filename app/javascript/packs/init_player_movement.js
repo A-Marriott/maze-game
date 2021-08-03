@@ -5,19 +5,17 @@ const playerMovement = () => {
   let xPosition = 0;
   let yPosition = 0;
   let timerStarted = false;
-  const xMovement = {'ArrowLeft': -1, 'ArrowRight': 1};
-  const yMovement = {'ArrowUp': -1, 'ArrowDown': 1};
+  const allowedEvents = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+  const xMovement = {'ArrowUp': 0, 'ArrowDown': 0, 'ArrowLeft': -1, 'ArrowRight': 1};
+  const yMovement = {'ArrowUp': -1, 'ArrowDown': 1, 'ArrowLeft': 0, 'ArrowRight': 0};
+  const xAllowedMovementCheckerAdjustment = {'ArrowUp': 1, 'ArrowDown': 0, 'ArrowLeft': 0, 'ArrowRight': 0};
+  const yAllowedMovementCheckerAdjustment = {'ArrowUp': 0, 'ArrowDown': 0, 'ArrowLeft': 1, 'ArrowRight': 0};
+  const directionToWallTracker = {'ArrowUp': 'N', 'ArrowDown': 'N', 'ArrowLeft': 'W', 'ArrowRight': 'W'};
   let powerUpCounter = 0
 
-  const movePlayer = (keyPress) => {
+  const movePlayer = () => {
     document.querySelector('.player').classList.remove('player')
-    if (xMovement[keyPress]) {
-      xPosition += xMovement[keyPress]
-    } else {
-      yPosition += yMovement[keyPress]
-    }
     const newLocation = document.getElementsByClassName(`x-${xPosition} y-${yPosition}`)[0].firstElementChild
-
     newLocation.classList.add('player');
     if (newLocation.classList.value.includes('powerup')) {
       newLocation.classList.remove('powerup');
@@ -25,30 +23,28 @@ const playerMovement = () => {
     }
   }
 
-  document.addEventListener('keydown', event => {
+  const checkValidMove = () => {
     if (timerStarted === false) {
       timer();
       timerStarted = true;
     }
 
-    if (event.key === 'ArrowDown' && document.getElementsByClassName(`y-${yPosition + 1}`)[0]) {
-      if (!document.getElementsByClassName(`y-${yPosition + 1} x-${xPosition}`)[0].classList.value.includes('N')) {
-        movePlayer(event.key)
-      } else if (powerUpCounter > 0) {
-        movePlayer(event.key)
-        powerUpCounter -= 1
-      }
-    } else if (event.key === 'ArrowUp' && document.getElementsByClassName(`y-${yPosition - 1}`)[0]) {
-      if (!document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0].classList.value.includes('N')) {
-        movePlayer(event.key)
-      } else if (powerUpCounter > 0) {
-        movePlayer(event.key)
-        powerUpCounter -= 1
-      }
-    } else if (event.key === 'ArrowLeft' && document.getElementsByClassName(`x-${xPosition - 1}`)[0] && !document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0].classList.value.includes('W')) {
-      movePlayer(event.key)
-    } else if (event.key === 'ArrowRight' && document.getElementsByClassName(`x-${xPosition + 1}`)[0] && !document.getElementsByClassName(`y-${yPosition} x-${xPosition + 1}`)[0].classList.value.includes('W')) {
-      movePlayer(event.key)
+    xPosition += xMovement[event.key]
+    yPosition += yMovement[event.key]
+    if (document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0] && !document.getElementsByClassName(`y-${yPosition + xAllowedMovementAdjustment[event.key]} x-${xPosition + yAllowedMovementCheckerAdjustment[event.key]}`)[0].classList.value.includes(directionToWallTracker[event.key])) {
+      movePlayer()
+    } else if (document.getElementsByClassName(`y-${yPosition} x-${xPosition}`)[0] && powerUpCounter > 0) {
+      movePlayer()
+      powerUpCounter -= 1
+    } else {
+      xPosition -= xMovement[event.key]
+      yPosition -= yMovement[event.key]
+    }
+  }
+
+  document.addEventListener('keydown', event => {
+    if (allowedEvents.includes(event.key)) {
+      checkValidMove()
     }
   })
 }
