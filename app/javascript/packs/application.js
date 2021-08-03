@@ -26,10 +26,12 @@ import playerMovement from './init_player_movement.js';
 import mazeEndPoint from './init_maze_end_point.js';
 import mazeCompletionCheck from './init_maze_completion_check.js';
 import powerUp from './init_powerup.js';
+import preventKeyboardScroll from './prevent_keyboard_scroll.js';
 
 document.addEventListener('turbolinks:load', () => {
   playerMovement();
   mazeEndPoint();
   mazeCompletionCheck();
   powerUp();
+  preventKeyboardScroll();
 });
